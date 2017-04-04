@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <title>JavaScript Temperature Converter</title>
+     <link href="normalize.css" rel="stylesheet" type="text/css">
+     <link href="global.css" rel="stylesheet" type="text/css">
+
+     <script type="text/javascript" src="temperature.js"></script>
+  </head>
+  <body>
+    <h1>Temperature Converter</h1>
+    <table>
+      <tr>
+        <th>Introduzca temperatura (examples: 373 ( c k/C K, c f/C F)):</th>
+        <td><input id="original" autofocus onchange="calculate();" placeholder="0K" size="50"></td>
+      </tr>
+      <tr>
+        <th>Temperatura convertida:</th>
+        <td><span class="output" id="converted"></span></td>
+      </tr>
+    </table>
+  </body>
+</html>
