@@ -81,12 +81,10 @@ function calculate() {
   var result;
   var temp = original.value;
   var regexp = /^([-+])?(\d+)(.\d*)?(e[-+]?\d+)?([cCfFkK])(\sto)?\s([cCfFkK])$/;
-  // var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
   var m = temp.match(regexp);
   var num = m[2]; // valor numerico
   var type1 = m[5]; // primera letra
   var type2 = m[7]; // segunda letra
-  // converted.innerHTML = "m: "+m+"num: "+num;
    if (m) {
         if (type1 == 'c' || type1 == 'C') {
             var celsius = new Celsius(num, type2);
@@ -94,9 +92,6 @@ function calculate() {
         }else if (type1 == 'f' || type1 == 'F') {
             var farenheit = new Farenheit(num, type2);
             result = farenheit.convert();
-        }else if (type1 == 'k' || type1 == 'K') {
-            var kelvin = new Kelvin(num, type2);
-            result = kelvin.convert();
         }
         console.log(result);
         converted.innerHTML = result;
