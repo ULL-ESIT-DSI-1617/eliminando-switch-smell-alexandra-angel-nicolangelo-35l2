@@ -24,7 +24,6 @@ class Temperatura extends Medida {
     }
 }
 class Celsius extends Temperatura {
-    
     constructor(value, string) {
         super(value, string);
     }
@@ -42,7 +41,6 @@ class Celsius extends Temperatura {
     }
     convert() {
         if (super.getString == 'k' || super.getString == 'K') {
-            
             return this.celsius2Kelvin();
         } else if (super.getString == 'f' || super.getString == 'F') {
             return this.celsius2Farenheit();
@@ -50,19 +48,55 @@ class Celsius extends Temperatura {
     }
 }
 
+class Farenheit extends Temperatura {
+    constructor(value, string) {
+        super(value, string);
+    }
+    farenheit2Kelvin() {
+        var conversion = super.getValue ;
+        conversion=parseFloat(conversion);
+        conversion=(((conversion+459.67)*5)/9);
+        conversion=conversion.toFixed(2);
+        conversion=conversion+" Kelvin";
+        return conversion;
+    }
+    farenheit2Celsius() {
+        var conversion = super.getValue ;
+        conversion=parseFloat(conversion);
+        conversion=((conversion-32) * 5 / 9)+" Celsius";
+        return conversion;
+    }
+    convert() {
+        if (super.getString == 'k' || super.getString == 'K') {
+            return this.farenheit2Kelvin();
+        } else if (super.getString == 'c' || super.getString == 'C') {
+            return this.farenheit2Celsius();
+        }
+    }
+}
+
+
+
 function calculate() {
   var result;
   var temp = original.value;
   var regexp = /^([-+])?(\d+)(.\d*)?(e[-+]?\d+)?([cCfFkK])(\sto)?\s([cCfFkK])$/;
+  // var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
   var m = temp.match(regexp);
   var num = m[2]; // valor numerico
   var type1 = m[5]; // primera letra
   var type2 = m[7]; // segunda letra
-  
+  // converted.innerHTML = "m: "+m+"num: "+num;
    if (m) {
         if (type1 == 'c' || type1 == 'C') {
             var celsius = new Celsius(num, type2);
             result = celsius.convert();
+        }else if (type1 == 'f' || type1 == 'F') {
+            var farenheit = new Farenheit(num, type2);
+            result = farenheit.convert();
+        }else if (type1 == 'k' || type1 == 'K') {
+            var kelvin = new Kelvin(num, type2);
+            result = kelvin.convert();
         }
         console.log(result);
         converted.innerHTML = result;
