@@ -1,4 +1,4 @@
-# Práctica 6: Eliminando Switch Smell
+# Práctica 7: Eliminando Switch Smell
 
 ## Enlace a la Práctica
 [Práctica 6: Eliminando Switch Smell](https://casianorodriguezleon.gitbooks.io/ull-esit-1617/content/practicas/practicanoswitchsmell.html)
