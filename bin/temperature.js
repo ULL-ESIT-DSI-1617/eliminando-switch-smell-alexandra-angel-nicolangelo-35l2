@@ -24,9 +24,45 @@ class Kelvin extends Temperatura {
     kelvin2Farenheit() {
         var conversion = super.getValue ;
         conversion=parseFloat(conversion);
-        conversion=((conversion* 9 / 5)- 459.67);
+        conversion=((conversion* 9 / 5)+ 32);
         conversion=conversion.toFixed(2);
         conversion=conversion+" Farenheit";
+        return conversion;
+    }
+    
+    Celsius2kelvin() {
+        var conversion = super.getValue ;
+        conversion=parseFloat(conversion);
+        conversion=(conversion + 273.15);
+        conversion=conversion.toFixed(2);
+        conversion=conversion+" Kelvin";
+        return conversion;
+    }
+    
+    Celsius2Farenheit() {
+        var conversion = super.getValue ;
+        conversion=parseFloat(conversion);
+        conversion=((conversion* 9 / 5)+ 32);
+        conversion=conversion.toFixed(2);
+        conversion=conversion+" Farenheit";
+        return conversion;
+    }
+    
+    Farenheit2Celsius() {
+        var conversion = super.getValue ;
+        conversion=parseFloat(conversion);
+        conversion=((conversion - 32)* 5/9);
+        conversion=conversion.toFixed(2);
+        conversion=conversion+" Celsius";
+        return conversion;
+    }
+    
+    Farenheit2Kelvin() {
+        var conversion = super.getValue ;
+        conversion=parseFloat(conversion);
+        conversion=(conversion + 273.15);
+        conversion=conversion.toFixed(2);
+        conversion=conversion+" Kelvin";
         return conversion;
     }
     convert() {
