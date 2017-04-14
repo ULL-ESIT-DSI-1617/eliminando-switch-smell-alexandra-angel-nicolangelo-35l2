@@ -4,15 +4,15 @@
 [Práctica 7: Eliminando Switch Smell](https://casianorodriguezleon.gitbooks.io/ull-esit-1617/content/practicas/practicanoswitchsmell.html)
 
 ## Requisitos
-Modifique el código de la práctica anterior de manera que:+
+Modifique el código de la práctica anterior de manera que:
 
 * Se eliminen todos los Switch Smell
 * Se eliminen todas las debilidades señaladas en la sección Debilidades
 * Se distribuyan las clases en ficheros separados de una manera racional
 * Recuerde que un requisito de la práctica anterior era que el constructor de Medida pudiera llamarse con un sólo argumento:
-
-    <pre>console.log(new Medida("32F")); // Prueba polimorfismo del constructor de Medida<code>
-
+    ```
+    console.log(new Medida("32F")); // Prueba polimorfismo del constructor de Medida
+    ```
 > La expresión regular necesaria para usar es un prefijo de la expresión
 > regular usada en la conversión. Se plantea así el requisito de
 > reciclar la expresión regular factorizando el código de las mismas.
