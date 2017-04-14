@@ -1,4 +1,5 @@
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
+
 // import Temperatura from 'temperature1.js';
 // import Kelvin from 'temperature1.js';
 // var Temperatura = require("../bin/temperature1");
@@ -36,13 +37,17 @@ class Celsius extends Temperatura {
     celsius2Kelvin() {
         var conversion = super.getValue ;
         conversion=parseFloat(conversion);
-        conversion=(conversion+273.15)+" Kelvin";
+        conversion=(conversion+273.15);
+        conversion=conversion.toFixed(2);
+        conversion+=" Kelvin";
         return conversion;
     }
     celsius2Farenheit() {
         var conversion = super.getValue ;
         conversion=parseFloat(conversion);
-        conversion=((conversion* 1.8)+32)+" Farenheit";
+        conversion=((conversion* 1.8)+32);
+        conversion=conversion.toFixed(2);
+        conversion+=" Farenheit";
         return conversion;
     }
     convert() {
@@ -63,13 +68,15 @@ class Farenheit extends Temperatura {
         conversion=parseFloat(conversion);
         conversion=(((conversion+459.67)*5)/9);
         conversion=conversion.toFixed(2);
-        conversion=conversion+" Kelvin";
+        conversion+=" Kelvin";
         return conversion;
     }
     farenheit2Celsius() {
         var conversion = super.getValue ;
         conversion=parseFloat(conversion);
-        conversion=((conversion-32) * 5 / 9)+" Celsius";
+        conversion=((conversion-32) * 5 / 9);
+        conversion=conversion.toFixed(2);
+        conversion+= " Celsius";
         return conversion;
     }
     convert() {
@@ -80,13 +87,6 @@ class Farenheit extends Temperatura {
         }
     }
 }
-
-// module.exports = {
-//   Temperatura:Temperatura,
-//   Medida:Medida
-// }; 
-
-// module.exports = Temperatura;
 
 class Kelvin extends Temperatura {
     constructor(value, string) {
