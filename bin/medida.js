@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-(function(exports){
-    
-    class Medida{
-        constructor(value, string) {
-            this.valor = value;
-            this.cadena = string;
-        }
-        get getValue() {
-            return this.valor;
-        }
-        get getString() {
-            return this.cadena;
-        }
-        set setValue(newValue) {
-            this.valor = newValue;
-        }
-        set setString(newString) {
-            this.cadena = newString;
-        }
-    }
-    // Medida.measures = Medida.measures || {};
-    exports.Medida = Medida;
-    
-})(this);
-=======
 var regexp = XRegExp('^([ ]*) \n' +
                     '(?<val> [-+]?[0-9]+(\.[0-9]+)?(?:e[+-]?[0-9]+)?) # val \n' +
                     '([ ]*) \n' +
@@ -70,4 +44,3 @@ Medida.convertir = function(valor) {
   else
     return "Introduzca una temperatura valida: 32 F to C";
 };
->>>>>>> dc37ac254a2f2e46f5b899426a70ff403f0ddd48
