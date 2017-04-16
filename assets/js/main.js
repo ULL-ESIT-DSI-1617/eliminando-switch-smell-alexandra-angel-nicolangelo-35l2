@@ -2,7 +2,7 @@
   "use strict";
   function main() {
       console.log("Entrando en main.js");
-      var valor     = document.getElementById('original').value,
+      var valor     = document.getElementById('convert').value,
           elemento  = document.getElementById('converted');
       elemento.innerHTML = Medida.convertir(valor);
       return false;

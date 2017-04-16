@@ -1,147 +1,84 @@
-"use strict"; // Use ECMAScript 5 strict mode in browsers that support it
+(function(){
+  
+    var measures = Medida.measures || {};
+  
+    function Temperatura(valor,tipo)
+    {
+      console.log("Accedo a clase Temperatura");
+      Medida.call(this,valor,tipo);
+      /* tipo es opcional. Debería admitir new Medida("45.2 F") */
+    }
+    Temperatura.prototype = new Medida();
+    Temperatura.prototype.constructor = Temperatura;
 
-// import Temperatura from 'temperature1.js';
-// import Kelvin from 'temperature1.js';
-// var Temperatura = require("../bin/temperature1");
-// import Kelvin from './temperature1';
+  // ----------------------------------------------------- //
 
-// var Medida = require("./medida");
-
-// class Medida {
-//     constructor(value, string) {
-//         this.valor = value;
-//         this.cadena = string;
-//     }
-//     get getValue() {
-//         return this.valor;
-//     }
-//     get getString() {
-//         return this.cadena;
-//     }
-//     set setValue(newValue) {
-//         this.valor = newValue;
-//     }
-//     set setString(newString) {
-//         this.cadena = newString;
-//     }
-// }
-class Temperatura extends Medida {
-    constructor(value, string) {
-        super(value, string);
+    function Celsius(valor)
+    {
+      var c_tof = 0;
+      var c_tok = 0;
+      console.log("Accedo a clase Celsius");
+      Temperatura.call(this,valor,'c');
     }
-}
-class Celsius extends Temperatura {
-    constructor(value, string) {
-        super(value, string);
+    Celsius.prototype = new Temperatura;
+    Celsius.prototype.constructor = Celsius;
+    measures.c = Celsius;
+    Celsius.prototype.toFarenheit = function()
+    {
+      var c_tof = (this.valor * 9/5) + 32;
+      return new Farenheit(c_tof);
     }
-    celsius2Kelvin() {
-        var conversion = super.getValue ;
-        conversion=parseFloat(conversion);
-        conversion=(conversion+273.15);
-        conversion=conversion.toFixed(2);
-        conversion+=" Kelvin";
-        return conversion;
+    Celsius.prototype.toKelvin = function()
+    {
+      var f_toK = (this.valor + 273.15);
+      return new Kelvin(f_toK);
     }
-    celsius2Farenheit() {
-        var conversion = super.getValue ;
-        conversion=parseFloat(conversion);
-        conversion=((conversion* 1.8)+32);
-        conversion=conversion.toFixed(2);
-        conversion+=" Farenheit";
-        return conversion;
+    
+    
+  // ----------------------------------------------------- //
+  
+    function Farenheit(valor)
+    {
+      var f_toC = 0;
+      var f_toK = 0;
+      console.log("Accedo a la clase Fahrenheit.");
+      Temperatura.call(this,valor,'f');
     }
-    convert() {
-        if (super.getString == 'k' || super.getString == 'K') {
-            return this.celsius2Kelvin();
-        } else if (super.getString == 'f' || super.getString == 'F') {
-            return this.celsius2Farenheit();
-        }
+    Farenheit.prototype = new Temperatura;
+    Farenheit.prototype.constructor = Farenheit;
+    measures.f = Farenheit;
+    Farenheit.prototype.toCelsius = function()
+    {
+        var f_toC = (this.valor - 32) * 5/9;
+        return new Celsius(f_toC);
     }
-}
-
-class Farenheit extends Temperatura {
-    constructor(value, string) {
-        super(value, string);
-    }
-    farenheit2Kelvin() {
-        var conversion = super.getValue ;
-        conversion=parseFloat(conversion);
-        conversion=(((conversion+459.67)*5)/9);
-        conversion=conversion.toFixed(2);
-        conversion+=" Kelvin";
-        return conversion;
-    }
-    farenheit2Celsius() {
-        var conversion = super.getValue ;
-        conversion=parseFloat(conversion);
-        conversion=((conversion-32) * 5 / 9);
-        conversion=conversion.toFixed(2);
-        conversion+= " Celsius";
-        return conversion;
-    }
-    convert() {
-        if (super.getString == 'k' || super.getString == 'K') {
-            return this.farenheit2Kelvin();
-        } else if (super.getString == 'c' || super.getString == 'C') {
-            return this.farenheit2Celsius();
-        }
-    }
-}
-
-class Kelvin extends Temperatura {
-    constructor(value, string) {
-        super(value, string);
+    Farenheit.prototype.toKelvin = function()
+    {
+      var f_toK = (this.toCelsius().valor + 273.15);
+      return new Kelvin(f_toK);
     }
 
-    kelvin2Celsius() {
-        var conversion = super.getValue ;
-        conversion=parseFloat(conversion);
-        conversion=(conversion-273.15);
-        conversion=conversion.toFixed(2);
-        conversion=conversion+" Celsius";
-        return conversion;
+  // ----------------------------------------------------- //
+  
+    function Kelvin(valor)
+    {
+      var k_toC = 0;
+      var k_toF = 0;
+      console.log("Accedo a clase Kelvin");
+      Temperatura.call(this,valor,'k');
+    }
+    Kelvin.prototype = new Temperatura;
+    Kelvin.prototype.constructor = Kelvin;
+    measures.k = Kelvin;
+    Kelvin.prototype.toCelsius = function()
+    {
+      var k_toC = (this.valor - 273.15);
+      return new Celsius(k_toC);
+    }
+    Kelvin.prototype.toFarenheit = function()
+    {
+      var k_toF = (this.toCelsius().valor * 9/5) + 32;
+      return new Farenheit(k_toF);
     }
 
-    kelvin2Farenheit() {
-        var conversion = super.getValue ;
-        conversion=parseFloat(conversion);
-        conversion=((conversion* 9 / 5)- 459.67);
-        conversion=conversion.toFixed(2);
-        conversion=conversion+" Farenheit";
-        return conversion;
-    }
-    convert() {
-        if (super.getString == 'c' || super.getString == 'C') {
-            return this.kelvin2Celsius();
-        } else if (super.getString == 'f' || super.getString == 'F') {
-            return this.kelvin2Farenheit();
-        }
-    }
-}
-
-
-// function calculate() {
-//   var result;
-//   var temp = original.value;
-//   var regexp = /^([-+])?(\d+)(.\d*)?(e[-+]?\d+)?([cCfFkK])(\sto)?\s([cCfFkK])$/;
-//   var m = temp.match(regexp);
-//   var num = m[2]; // valor numerico
-//   var type1 = m[5]; // primera letra
-//   var type2 = m[7]; // segunda letra
-//   if (m) {
-//         if (type1 == 'c' || type1 == 'C') {
-//             var celsius = new Celsius(num, type2);
-//             result = celsius.convert();
-//         }else if (type1 == 'f' || type1 == 'F') {
-//             var farenheit = new Farenheit(num, type2);
-//             result = farenheit.convert();
-//         }else if (type1 == 'k' || type1 == 'K') {
-             
-//             var kelvin = new Kelvin(num, type2);
-            
-//             result = kelvin.convert();
-//         }
-//         console.log(result);
-//         converted.innerHTML = result;
-//   }
-// }
+})(this);
